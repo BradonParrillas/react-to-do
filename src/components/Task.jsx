@@ -4,7 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 const Task = (props) => {
   const { id, children, state, completeTask, deleteTask, ...taskProps } = props;
   return (
-    <div className={`task ${state ? `${state}` : ""}`}>
+    <div className={`task ${state ? "completed" : ""}`}>
       <div className="task-content" onClick={() => completeTask(id)}>
         {children}
       </div>

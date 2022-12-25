@@ -3,24 +3,12 @@ import TaskForm from "./TaskForm";
 import { useState } from "react";
 
 const ToDo = () => {
-  const taskExample = [
-    {
-      id: "1",
-      text: "Ayudar a mi hermano en su tarea de fisica cuantica y matematica 3",
-      state: "pending",
-    },
-    {
-      id: "2",
-      text: "Hacer la cena de Navidad",
-      state: "pending",
-    },
-  ];
-  const [tasks, setTasks] = useState(taskExample);
+  const [tasks, setTasks] = useState([]);
 
   const addTask = (task) => {
     if (task.text.trim()) {
       task.text = task.text.trim();
-      task.state = "pending";
+      task.state = false;
       const uptatedTasks = [task, ...tasks];
       setTasks(uptatedTasks);
       console.log("%ctask added", "color: green");
@@ -34,7 +22,14 @@ const ToDo = () => {
   };
 
   const completeTask = (id) => {
-    console.log("%ccomplete task", "color:lightblue");
+    const uptatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        task.state = !task.state;
+      }
+      return task;
+    });
+    setTasks(uptatedTasks);
+    console.log("%cupdate task", "color:aquamarine");
   };
 
   return (
